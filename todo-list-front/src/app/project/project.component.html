@@ -1,0 +1,76 @@
+<div class="todo">
+    <div class="card">
+        <div class="card-header">
+            <div class="full-width" [ngSwitch]="editMode">
+                <span class="card-header-content" *ngSwitchCase="false">
+                    <p class="card-header-title">{{ project.name }}</p>
+                    <button class="card-header-icon card-action" (click)="onEdit(true)" aria-label="more options">
+                        <span class="icon">
+                            <i class="fas fa-pen" aria-hidden="true"></i>
+                        </span>
+                    </button>
+                    <button class="card-header-icon card-action" (click)="onProjectDeleted()" aria-label="more options">
+                        <span class="icon">
+                            <i class="fas fa-trash" aria-hidden="true"></i>
+                        </span>
+                    </button>
+                </span>
+
+                <span class="card-header-content" *ngSwitchCase="true">
+                    <form [formGroup]="projectForm" (ngSubmit)="onProjectSubmitted()">
+                        <input
+                            type="text"
+                            class="input project-input"
+                            formControlName="name"
+                            placeholder="Project name"
+                        />
+                        <button
+                            type="submit"
+                            class="card-header-icon card-action"
+                            [disabled]="!projectForm.valid"
+                            aria-label="more options"
+                        >
+                            <span class="icon">
+                                <i class="fas fa-check" aria-hidden="true"></i>
+                            </span>
+                        </button>
+                        <button
+                            class="card-header-icon card-action"
+                            (click)="onEdit(false); $event.preventDefault()"
+                            aria-label="more options"
+                        >
+                            <span class="icon">
+                                <i class="fas fa-times" aria-hidden="true"></i>
+                            </span>
+                        </button>
+                    </form>
+                </span>
+            </div>
+        </div>
+        <div class="card-content">
+            <div class="container">
+                <div>
+                    <h5 class="title is-5">To Do</h5>
+                    <app-todo-list
+                        [todos]="toDo$ | async"
+                        [project]="project._id"
+                        (onTodoChange)="onTodoChange($event)"
+                        (onTodoRemoved)="onTodoRemoved($event)"
+                    ></app-todo-list>
+                </div>
+                <hr />
+                <div>
+                    <h5 class="title is-5">Done</h5>
+                    <app-todo-list [todos]="done$ | async" [project]="project._id"></app-todo-list>
+                </div>
+                <hr />
+                <form [formGroup]="todoForm" (ngSubmit)="onTodoSubmitted()">
+                    <div class="create-form">
+                        <input type="text" class="input" formControlName="description" placeholder="New task" />
+                        <button [disabled]="!todoForm.valid" type="submit" class="button is-primary">Add</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

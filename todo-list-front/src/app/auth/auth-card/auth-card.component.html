@@ -1,0 +1,12 @@
+<div class="card">
+    <div class="card-header">
+        <h1>Login</h1>
+    </div>
+
+    <div class="card-content">
+        <div class="content">
+            <app-auth-form [isRegister]="this.isRegister" (onSubmit)="onFormSubmitted($event)"></app-auth-form>
+            <a (click)="this.onChangeSingInOrSingUpForm()">{{ this.isRegister ? 'Login' : 'Register' }}</a>
+        </div>
+    </div>
+</div>

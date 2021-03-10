@@ -1,0 +1,11 @@
+<div>
+    <div *ngFor="let todo of todos">
+        <app-todo
+            [todo]="todo"
+            [project]="project"
+            (onCompleted)="onTodoCompleted($event)"
+            (onEdited)="onTodoEdited($event)"
+            (onDeleted)="onTodoDeleted($event)"
+        ></app-todo>
+    </div>
+</div>

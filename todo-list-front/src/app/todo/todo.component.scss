@@ -1,0 +1,32 @@
+.todo {
+    padding: 10px;
+}
+
+.todo-description {
+    margin-left: 5px;
+}
+
+.todo-action {
+    margin-left: 5px;
+
+    :hover {
+        cursor: pointer;
+    }
+}
+
+.todo-input {
+    height: 25px;
+}
+
+.todo-label-center {
+    align-items: center;
+}
+
+form {
+    display: flex;
+
+    button {
+        background: none;
+        border: none;
+    }
+}

@@ -1,0 +1,14 @@
+<div class="card">
+    <div class="card-content">
+        <div class="container has-text-centered">
+            <h4 class="title is-4">Create a new project</h4>
+
+            <form [formGroup]="projectForm" (ngSubmit)="onFormSubmitted()">
+                <input class="input" type="text" formControlName="name" placeholder="Project name" />
+                <button [disabled]="!projectForm.valid" type="submit" class="button is-primary submit-button">
+                    Create
+                </button>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,46 @@
+<div
+    class="todo"
+    [ngClass]="{ 'is-flex': editMode }"
+    (mouseenter)="onMouseHover(true)"
+    (mouseleave)="onMouseHover(false)"
+>
+    <label class="checkbox" [ngClass]="{ 'is-flex': editMode, 'todo-label-center': editMode }">
+        <input
+            [disabled]="todo.completed || editMode"
+            type="checkbox"
+            [checked]="todo.completed"
+            (change)="onChecked()"
+        />
+        <span [ngSwitch]="editMode" class="todo-description">
+            <span *ngSwitchCase="false">
+                {{ todo.description }}
+            </span>
+            <span *ngSwitchCase="true">
+                <form [formGroup]="todoForm" (ngSubmit)="onSubmitted()">
+                    <input
+                        type="text"
+                        class="input todo-input"
+                        formControlName="description"
+                        placeholder="Task description"
+                    />
+                    <span *ngIf="editMode" class="icon todo-action">
+                        <button type="submit" [disabled]="!todoForm.valid">
+                            <i class="fas fa-check"></i>
+                        </button>
+                    </span>
+                    <span *ngIf="editMode" class="icon todo-action" (click)="onEdit(false); $event.preventDefault()">
+                        <i class="fas fa-times"></i>
+                    </span>
+                </form>
+            </span>
+        </span>
+    </label>
+    <span *ngIf="!todo.completed && isMouseHovering && !editMode">
+        <span class="icon todo-action" (click)="onEdit(true)">
+            <i class="fas fa-pen"></i>
+        </span>
+        <span class="icon todo-action" (click)="onDelete()">
+            <i class="fas fa-trash"></i>
+        </span>
+    </span>
+</div>

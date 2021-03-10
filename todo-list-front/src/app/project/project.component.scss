@@ -1,0 +1,40 @@
+.create-form {
+    display: flex;
+
+    button {
+        margin-left: 10px;
+    }
+}
+
+.card-action {
+    background: none;
+    border: none;
+}
+
+.card-header-content {
+    display: flex;
+
+    button {
+        justify-self: flex-end;
+    }
+}
+
+.full-width {
+    width: 100%;
+}
+
+.project-input {
+    height: 25px;
+}
+
+form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 15px;
+    width: 100%;
+
+    button {
+        justify-self: flex-end;
+    }
+}

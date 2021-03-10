@@ -1,0 +1,10 @@
+<div class="project-list">
+    <div class="project" *ngFor="let project of projects$ | async">
+        <app-project
+            [project]="project"
+            (onUpdated)="onProjectUpdated()"
+            (onDeleted)="onProjectDeleted()"
+        ></app-project>
+    </div>
+    <app-project-create class="project" (onSubmit)="onSubmitted($event)"></app-project-create>
+</div>
